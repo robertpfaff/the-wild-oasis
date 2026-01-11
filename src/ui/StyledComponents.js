@@ -1,20 +1,20 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-  padding: ${(props) => (props.size === "small" ? "0.5rem 1rem" : "0.75rem 1.5rem")};
+  padding: ${(props) => (props.$size === "small" ? "0.5rem 1rem" : "0.75rem 1.5rem")};
   background-color: ${(props) =>
-    props.variant === "primary" ? "#3b82f6" : props.variant === "danger" ? "#ef4444" : "#6b7280"};
+    props.$variant === "primary" ? "#3b82f6" : props.$variant === "danger" ? "#ef4444" : "#6b7280"};
   color: white;
   border: none;
   border-radius: 0.375rem;
-  font-size: ${(props) => (props.size === "small" ? "0.875rem" : "1rem")};
+  font-size: ${(props) => (props.$size === "small" ? "0.875rem" : "1rem")};
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
 
   &:hover {
     background-color: ${(props) =>
-      props.variant === "primary" ? "#2563eb" : props.variant === "danger" ? "#dc2626" : "#4b5563"};
+      props.$variant === "primary" ? "#2563eb" : props.$variant === "danger" ? "#dc2626" : "#4b5563"};
   }
 
   &:disabled {
@@ -66,9 +66,9 @@ export const Textarea = styled.textarea`
 
 export const FormRow = styled.div`
   display: grid;
-  grid-template-columns: ${(props) => props.columns || "200px 1fr"};
+  grid-template-columns: ${(props) => props.$columns || "200px 1fr"};
   gap: 1rem;
-  align-items: ${(props) => props.align || "center"};
+  align-items: ${(props) => props.$align || "center"};
   padding: 1rem 0;
 
   &:not(:last-child) {
@@ -99,7 +99,7 @@ export const Table = styled.div`
 
 export const TableHeader = styled.div`
   display: grid;
-  grid-template-columns: ${(props) => props.columns || "1fr 1fr 1fr 1fr"};
+  grid-template-columns: ${(props) => props.$columns || "1fr 1fr 1fr 1fr"};
   gap: 1rem;
   padding: 1rem 1.5rem;
   background-color: #f9fafb;
@@ -116,7 +116,7 @@ export const TableHeader = styled.div`
 
 export const TableRow = styled.div`
   display: grid;
-  grid-template-columns: ${(props) => props.columns || "1fr 1fr 1fr 1fr"};
+  grid-template-columns: ${(props) => props.$columns || "1fr 1fr 1fr 1fr"};
   gap: 1rem;
   padding: 1rem 1.5rem;
   align-items: center;
@@ -154,7 +154,7 @@ export const ModalContent = styled.div`
   background-color: white;
   border-radius: 0.5rem;
   padding: 2rem;
-  max-width: ${(props) => props.maxWidth || "600px"};
+  max-width: ${(props) => props.$maxWidth || "600px"};
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;

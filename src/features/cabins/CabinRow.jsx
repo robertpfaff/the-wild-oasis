@@ -56,7 +56,7 @@ const ButtonGroup = styled.div`
 const ActionButton = styled.button`
   padding: 0.375rem 0.75rem;
   background-color: ${(props) =>
-    props.variant === "edit" ? "#3b82f6" : props.variant === "delete" ? "#ef4444" : "#6b7280"};
+    props.$variant === "edit" ? "#3b82f6" : props.$variant === "delete" ? "#ef4444" : "#6b7280"};
   color: white;
   border: none;
   border-radius: 0.375rem;
@@ -66,7 +66,7 @@ const ActionButton = styled.button`
 
   &:hover {
     background-color: ${(props) =>
-      props.variant === "edit" ? "#2563eb" : props.variant === "delete" ? "#dc2626" : "#4b5563"};
+      props.$variant === "edit" ? "#2563eb" : props.$variant === "delete" ? "#dc2626" : "#4b5563"};
   }
 `;
 
@@ -84,10 +84,10 @@ function CabinRow({ cabin, onEdit, onDelete }) {
         {description.substring(0, 50)}...
       </div>
       <ButtonGroup>
-        <ActionButton variant="edit" onClick={() => onEdit(cabin)}>
+        <ActionButton $variant="edit" onClick={() => onEdit(cabin)}>
           Edit
         </ActionButton>
-        <ActionButton variant="delete" onClick={() => onDelete(cabin.id)}>
+        <ActionButton $variant="delete" onClick={() => onDelete(cabin.id)}>
           Del
         </ActionButton>
       </ButtonGroup>

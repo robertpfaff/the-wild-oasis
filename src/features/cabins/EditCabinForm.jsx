@@ -92,7 +92,7 @@ function EditCabinForm({ cabin, onSubmit, onCancel }) {
         </div>
       </FormRow>
 
-      <FormRow align="start">
+      <FormRow $align="start">
         <label htmlFor="description">Description</label>
         <div>
           <Textarea
@@ -120,10 +120,10 @@ function EditCabinForm({ cabin, onSubmit, onCancel }) {
       </FormRow>
 
       <ModalActions>
-        <Button type="button" variant="secondary" onClick={onCancel}>
+        <Button type="button" $variant="secondary" onClick={onCancel}>
           Cancel
         </Button>
-        <Button type="submit" variant="primary">
+        <Button type="submit" $variant="primary">
           {cabin ? "Update cabin" : "Create cabin"}
         </Button>
       </ModalActions>

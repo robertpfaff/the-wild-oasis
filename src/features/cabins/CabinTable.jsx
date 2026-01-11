@@ -114,10 +114,10 @@ function CabinTable() {
 
       {showModal && (
         <Modal onClick={handleCancel}>
-          <ModalContent onClick={(e) => e.stopPropagation()} maxWidth="700px">
+          <ModalContent onClick={(e) => e.stopPropagation()} $maxWidth="700px">
             <ModalHeader>
               <h2>Edit Cabin</h2>
-              <Button variant="secondary" size="small" onClick={handleCancel}>
+              <Button $variant="secondary" $size="small" onClick={handleCancel}>
                 ✕
               </Button>
             </ModalHeader>
