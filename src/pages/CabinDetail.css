@@ -1,0 +1,131 @@
+.cabin-detail {
+  padding: 40px 20px;
+}
+
+.back-btn {
+  background-color: #95a5a6;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.back-btn:hover {
+  background-color: #7f8c8d;
+}
+
+.detail-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.detail-image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.detail-info h1 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.detail-description {
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.detail-specs {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 20px;
+  padding: 15px 0;
+  border-top: 2px solid #ecf0f1;
+  border-bottom: 2px solid #ecf0f1;
+}
+
+.spec {
+  font-size: 16px;
+}
+
+.spec strong {
+  color: #2c3e50;
+}
+
+.amenities-section {
+  margin-bottom: 30px;
+}
+
+.amenities-section h3 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.amenities-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.amenities-list li {
+  padding: 8px;
+  background-color: #ecf0f1;
+  border-radius: 4px;
+}
+
+.amenities-list li:before {
+  content: "✓ ";
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.booking-form {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.booking-form h3 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.add-to-cart-btn {
+  width: 100%;
+  background-color: #27ae60;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #229954;
+}
+
+@media (max-width: 968px) {
+  .detail-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .detail-image {
+    height: 400px;
+  }
+}
