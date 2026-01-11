@@ -1,0 +1,84 @@
+.cabin-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cabin-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cabin-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.cabin-info {
+  padding: 20px;
+}
+
+.cabin-info h3 {
+  margin-bottom: 10px;
+  color: #2c3e50;
+  font-size: 22px;
+}
+
+.cabin-description {
+  color: #666;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.cabin-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding: 10px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.cabin-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+.cabin-capacity {
+  color: #666;
+}
+
+.cabin-amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.amenity-tag {
+  background-color: #ecf0f1;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  color: #34495e;
+}
+
+.view-details-btn {
+  display: block;
+  width: 100%;
+  background-color: #3498db;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.view-details-btn:hover {
+  background-color: #2980b9;
+}
