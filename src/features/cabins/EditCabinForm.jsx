@@ -83,9 +83,11 @@ function EditCabinForm({ cabin, onSubmit, onCancel }) {
                 value: 0,
                 message: "Discount cannot be negative",
               },
-              validate: (value, formValues) =>
-                Number(value) <= Number(formValues.regularPrice) ||
-                "Discount should be less than regular price",
+              validate: (value, formValues) => {
+                const discountValue = value === "" || value === null || value === undefined ? 0 : Number(value);
+                const priceValue = Number(formValues.regularPrice);
+                return discountValue <= priceValue || "Discount should be less than or equal to regular price";
+              },
             })}
           />
           {errors.discount && <Error>{errors.discount.message}</Error>}

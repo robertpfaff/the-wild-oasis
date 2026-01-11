@@ -81,7 +81,7 @@ function CabinRow({ cabin, onEdit, onDelete }) {
       <Price>${regularPrice}</Price>
       <Discount className="hide-mobile">{discount ? `$${discount}` : "—"}</Discount>
       <div className="hide-mobile" style={{ fontSize: "0.875rem", color: "#6b7280" }}>
-        {description.substring(0, 50)}...
+        {description ? description.substring(0, 50) + "..." : "No description"}
       </div>
       <ButtonGroup>
         <ActionButton $variant="edit" onClick={() => onEdit(cabin)}>

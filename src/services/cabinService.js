@@ -42,7 +42,8 @@ export function updateCabin(id, updatedCabin) {
 // Create a new cabin
 export function createCabin(newCabin) {
   const cabins = getCabins();
-  const newId = Math.max(...cabins.map((c) => c.id), 0) + 1;
+  const maxId = cabins.length > 0 ? Math.max(...cabins.map((c) => c.id)) : 0;
+  const newId = maxId + 1;
   const cabin = { id: newId, ...newCabin };
   
   cabins.push(cabin);
