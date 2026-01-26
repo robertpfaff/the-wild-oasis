@@ -64,7 +64,7 @@ const Button = styled.button`
 
   // Must include props to use them in styled components
   ${(props) => sizes[props.size || "medium"]}
-  ${(props) => variations[props.variation || "primary"]}
+  ${(props) => variations[props.$variation || "primary"]}
 
   // Hover like writing button: hover
   &:hover {

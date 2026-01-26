@@ -16,3 +16,5 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 if (import.meta.env.DEV) {
   window.supabase = supabase;
 }
+
+export default supabase;

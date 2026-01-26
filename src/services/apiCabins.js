@@ -88,11 +88,15 @@ export async function createEditCabin(newCabinData, id) {
 export async function getImageUrl(path) {
   if (!path) return null;
 
+  // If path is already a full URL, return it as is
+  if (path.startsWith("http://") || path.startsWith("https://")) {
+    return path;
+  }
+
   // Try to get the public URL first (works if bucket is public)
   const { data: publicData } = supabase.storage.from(BUCKET).getPublicUrl(path);
 
   if (publicData?.publicUrl) {
-    // If bucket is public this will work
     return publicData.publicUrl;
   }
 
@@ -100,6 +104,8 @@ export async function getImageUrl(path) {
   const { data: signedData, error: signedErr } = await supabase.storage
     .from(BUCKET)
     .createSignedUrl(path, SIGNED_URL_TTL);
+
+    console.log("createSignedUrl path:", path, "Signed URL:", signedData?.signedUrl);
 
   if (signedErr) {
     console.error("createSignedUrl error:", signedErr);
