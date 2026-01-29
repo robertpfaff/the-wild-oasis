@@ -3,7 +3,7 @@ import { subDays } from "date-fns";
 import { useSearchParams } from "react-router-dom";
 import { getBookingsAfterDate } from "../../services/apiBookings";
 
-export function useRecentStays() {
+export function useRecentBookings() {
   const [searchParams] = useSearchParams();
 
   const numDays = !searchParams.get("last")
@@ -16,5 +16,5 @@ export function useRecentStays() {
     queryKey: ["bookings", `last-${numDays}`],
   });
 
-  return { isLoading, bookings, numDays };
+  return { isLoading, bookings };
 }

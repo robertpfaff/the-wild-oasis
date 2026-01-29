@@ -1,7 +1,7 @@
 import styled from "styled-components";
-
 import Heading from "../../ui/Heading";
 import Row from "../../ui/Row";
+import TodayItem from "../check-in-out/TodayItem";
 
 const StyledToday = styled.div`
   /* Box */
@@ -36,14 +36,24 @@ const NoActivity = styled.p`
   margin-top: 0.8rem;
 `;
 
-function Today() {
+function TodayActivity({ confirmedStays = [] }) {
+  console.log("TodayActivity confirmedStays:", confirmedStays);
   return (
     <StyledToday>
       <Row type="horizontal">
         <Heading as="h2">Today</Heading>
       </Row>
+      {confirmedStays.length === 0 ? (
+        <NoActivity>No activity today</NoActivity>
+      ) : (
+        <TodayList>
+          {confirmedStays.map((activity, idx) => (
+            <TodayItem key={activity.id || idx} activity={activity} />
+          ))}
+        </TodayList>
+      )}
     </StyledToday>
   );
 }
 
-export default Today;
+export default TodayActivity;

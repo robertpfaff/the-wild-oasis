@@ -7,11 +7,12 @@ export async function getBookings({ filter, sortBy, page }) {
     .from("bookings")
     .select(
       "id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullName, email)",
-      { count: "exact" }
+      { count: "exact" },
     );
 
   // FILTER
   if (filter) query = query[filter.method || "eq"](filter.field, filter.value);
+  console.log("BOOKINGS query:", query);
 
   // SORT
   if (sortBy)
@@ -52,10 +53,11 @@ export async function getBooking(id) {
 
 // Returns all BOOKINGS that are were created after the given date. Useful to get bookings created in the last 30 days, for example.
 // date: ISOString
+
 export async function getBookingsAfterDate(date) {
   const { data, error } = await supabase
     .from("bookings")
-    .select("created_at, totalPrice, extrasPrice")
+    .select("created_at, totalPrice, extrasPrice, numNights, guest:guestID(fullName, nationalFlag, nationalID)")
     .gte("created_at", date)
     .lte("created_at", getToday({ end: true }));
 
@@ -63,7 +65,7 @@ export async function getBookingsAfterDate(date) {
     console.error(error);
     throw new Error("Bookings could not get loaded");
   }
-
+  console.log("getBookingsAfterDate data:", data);
   return data;
 }
 
@@ -71,7 +73,7 @@ export async function getBookingsAfterDate(date) {
 export async function getStaysAfterDate(date) {
   const { data, error } = await supabase
     .from("bookings")
-    .select("*, guests(fullName)")
+    .select("*, guests(fullName, nationalFlag, nationalID)")
     .gte("startDate", date)
     .lte("startDate", getToday());
 
@@ -80,6 +82,7 @@ export async function getStaysAfterDate(date) {
     throw new Error("Bookings could not get loaded");
   }
 
+  console.log("getStaysAfterDate data:", data);
   return data;
 }
 
@@ -87,7 +90,7 @@ export async function getStaysAfterDate(date) {
 export async function getStaysTodayActivity() {
   const { data, error } = await supabase
     .from("bookings")
-    .select("*, guests(fullName, nationality, countryFlag)")
+    .select("created_at, totalPrice, extrasPrice, numNights, guest:guestID(fullName, nationalFlag, nationalId)")
     .or(
       `and(status.eq.unconfirmed,startDate.eq.${getToday()}),and(status.eq.checked-in,endDate.eq.${getToday()})`
     )

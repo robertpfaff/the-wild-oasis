@@ -57,12 +57,16 @@ function SalesChart({ bookings, numDays }) {
         background: "#fff",
       };
 
+  const firstDate = allDates.at(0);
+  const lastDate = allDates.at(-1);
+  let dateRangeText = "No sales data available";
+  if (firstDate instanceof Date && !isNaN(firstDate) && lastDate instanceof Date && !isNaN(lastDate)) {
+    dateRangeText = `Sales from ${format(firstDate, "MMM dd yyyy")} — ${format(lastDate, "MMM dd yyyy")}`;
+  }
+
   return (
     <StyledSalesChart>
-      <Heading as="h2">
-        Sales from {format(allDates.at(0), "MMM dd yyyy")} &mdash;{" "}
-        {format(allDates.at(-1), "MMM dd yyyy")}{" "}
-      </Heading>
+      <Heading as="h2">{dateRangeText}</Heading>
 
       <ResponsiveContainer height={300} width="100%">
         <AreaChart data={data}>
@@ -76,7 +80,7 @@ function SalesChart({ bookings, numDays }) {
             tick={{ fill: colors.text }}
             tickLine={{ stroke: colors.text }}
           />
-          <CartesianGrid strokeDasharray="4" stroke={colors.text} />
+          <CartesianGrid strokeDasharray="4" />
           <Tooltip contentStyle={{ backgroundColor: colors.background }} />
           <Area
             dataKey="totalSales"

@@ -1,4 +1,4 @@
-import { supabase } from "./supabase";
+import supabase from "./supabase";
 
 const BUCKET = "cabin-images";
 const SIGNED_URL_TTL = 60 * 60; // seconds (1 hour)

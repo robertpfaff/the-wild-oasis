@@ -1,10 +1,9 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-
-import Tag from "../../ui/Tag";
-import { Flag } from "../../ui/Flag";
-import Button from "../../ui/Button";
-import CheckoutButton from "./CheckoutButton";
+import CheckoutButton from 'features/check-in-out/CheckoutButton';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import Button from 'ui/Button';
+import { Flag } from 'ui/Flag';
+import Tag from 'ui/Tag';
 
 const StyledTodayItem = styled.li`
   display: grid;
@@ -19,37 +18,53 @@ const StyledTodayItem = styled.li`
   &:first-child {
     border-top: 1px solid var(--color-grey-100);
   }
+  /* &:not(:last-child) {
+    border-bottom: 1px solid var(--color-grey-100);
+  } */
 `;
 
 const Guest = styled.div`
   font-weight: 500;
 `;
 
-function TodayItem({ activity }) {
-  const { id, status, guests, numNights } = activity;
+function TodayItem({ stay }) {
+  const { id, status, guests, numNights } = stay;
 
-  return (
-    <StyledTodayItem>
-      {status === "unconfirmed" && <Tag type="green">Arriving</Tag>}
-      {status === "checked-in" && <Tag type="blue">Departing</Tag>}
-
-      <Flag src={guests.countryFlag} alt={`Flag of ${guests.country}`} />
-      <Guest>{guests.fullName}</Guest>
-      <div>{numNights} nights</div>
-
-      {status === "unconfirmed" && (
+  const statusToAction = {
+    unconfirmed: {
+      action: 'arriving',
+      tag: 'green',
+      button: (
         <Button
-          size="small"
-          variation="primary"
+          variation='primary'
+          size='small'
           as={Link}
           to={`/checkin/${id}`}
         >
           Check in
         </Button>
-      )}
-      {status === "checked-in" && <CheckoutButton bookingId={id} />}
+      ),
+    },
+    'checked-in': {
+      action: 'departing',
+      tag: 'blue',
+      button: <CheckoutButton bookingId={id} />,
+    },
+  };
+
+  return (
+    <StyledTodayItem>
+      <Tag type={statusToAction[status].tag}>
+        {statusToAction[status].action}
+      </Tag>
+      <Flag src={guests.countryFlag} alt={`Flag of ${guests.country}`} />
+      <Guest>{guests.fullName}</Guest>
+      <div>{numNights} nights</div>
+
+      {statusToAction[status].button}
     </StyledTodayItem>
   );
 }
 
 export default TodayItem;
+
