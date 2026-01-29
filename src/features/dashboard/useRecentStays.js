@@ -1,23 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import { subDays } from "date-fns";
-import { useSearchParams } from "react-router-dom";
-import { getStaysAfterDate } from "../../services/apiBookings";
+import { useQuery } from "@tanstack/react-query";
+import supabase from "../../services/supabase";
 
 export function useRecentStays() {
-  const [searchParams] = useSearchParams();
-
-  const numDays = !searchParams.get("last")
-    ? 7
-    : Number(searchParams.get("last"));
-  const queryDate = subDays(new Date(), numDays).toISOString();
-
+  // For demo: fetch all stays, ignore date and status
   const { isLoading, data: stays } = useQuery({
-    queryFn: () => getStaysAfterDate(queryDate),
-    queryKey: ["stays", `last-${numDays}`],
+    queryKey: ["stays", "all"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("bookings")
+        .select("*, guests(fullName, nationalFlag, nationalID)");
+      if (error) throw new Error(error.message);
+      return data;
+    },
   });
-
-  // For demo: include all stays regardless of status
   const confirmedStays = stays || [];
-
-  return { isLoading, stays, confirmedStays, numDays };
+  return { isLoading, stays, confirmedStays, numDays: null };
 }
