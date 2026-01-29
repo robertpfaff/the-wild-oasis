@@ -16,7 +16,7 @@ import Home from "./pages/Home";
 import AppLayout from "./ui/AppLayout";
 import Booking from "./features/bookings/Booking.jsx"
 import Checkin from "./pages/Checkin";
-import ProtectedRoute from "./ui/ProtecteRoute.jsx";
+// import ProtectedRoute from "./ui/ProtecteRoute.jsx";
 import { DarkModeProvider } from "./context/DarkModeContext";
 
 const queryClient = new QueryClient({
@@ -37,17 +37,9 @@ function App() {
         <GlobalStyles />
         <BrowserRouter>
           <Routes>
-            {/* Public Home route */}
-            <Route path="/" element={<Home />} />
-
-            {/* Protected routes */}
-            <Route
-              element={
-                <ProtectedRoute>
-                  <AppLayout />
-                </ProtectedRoute>
-              }
-            >
+            {/* Public dashboard as default route */}
+            <Route path="/" element={<AppLayout />}>
+              <Route index element={<Dashboard />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="bookings" element={<Bookings />} />
               <Route path="bookings/:bookingId" element={<Booking />} />
@@ -57,7 +49,6 @@ function App() {
               <Route path="settings" element={<Settings />} />
               <Route path="account" element={<Account />} />
             </Route>
-
             <Route path="login" element={<Login />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
