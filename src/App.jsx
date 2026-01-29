@@ -12,6 +12,7 @@ import Settings from "./pages/Settings";
 import Account from "./pages/Account";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
+import Home from "./pages/Home";
 import AppLayout from "./ui/AppLayout";
 import Booking from "./features/bookings/Booking.jsx"
 import Checkin from "./pages/Checkin";
@@ -36,6 +37,10 @@ function App() {
         <GlobalStyles />
         <BrowserRouter>
           <Routes>
+            {/* Public Home route */}
+            <Route path="/" element={<Home />} />
+
+            {/* Protected routes */}
             <Route
               element={
                 <ProtectedRoute>
@@ -43,7 +48,6 @@ function App() {
                 </ProtectedRoute>
               }
             >
-              <Route index element={<Navigate replace to="dashboard" />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="bookings" element={<Bookings />} />
               <Route path="bookings/:bookingId" element={<Booking />} />
