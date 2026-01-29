@@ -1,0 +1,3 @@
+[submodule "awesome-redux"]
+    path = awesome-redux
+    url = https://github.com/robertpfaff/awesome-redux.git
