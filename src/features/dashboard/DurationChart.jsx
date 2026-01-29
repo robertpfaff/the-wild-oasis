@@ -203,6 +203,7 @@ const startDataDark = [
 
 function prepareData(startData, stays) {
   // A bit ugly code, but sometimes this is what it takes when working with real data 😅
+  console.log("Duration chart data:", stays);
 
   function incArrayValue(arr, field) {
     return arr.map((obj) =>
